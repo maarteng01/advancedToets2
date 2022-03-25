@@ -15,6 +15,32 @@
     <div class="row1content">
         <h2>Snacks</h2>
         <p th:text="|${nrOfSnacks} snacks found|"></p>
+        <div th:unless="${showFilters}" class="filters">
+            <a class="buttonLook filterButton" th:href="@{/snacklist/filter}">filter</a>
+        </div>
+        <div class="filters" th:if="${showFilters}">
+            <a class="buttonLook filterButton" th:href="@{/snacklist}">-</a>
+            <form>
+                <h3>Price</h3>
+                <div class="onefilter">
+                    <label for="filterPrice">Price:</label>
+                    <input id="filterPrice" type="number" value="5" min="5" max="30" step="0.5">
+                </div>
+                <h3>Vegan</h3>
+                <div class="onefilter">
+                    <label for="vegan_yes" class="filtername">Yes</label>
+                    <input type="radio" id="vegan_yes" value="yes">
+                </div>
+                <div class="onefilter">
+                    <label for="vegan_no" class="filtername">No</label>
+                    <input type="radio" id="vegan_no" value="no">
+                </div>
+                <div class="onefilter">
+                    <label for="vegan_all" class="filtername">All</label>
+                    <input type="radio" id="vegan_all" value="all">
+                </div>
+            </form>
+        </div>
         <div class="cols2">
             <div th:each="snack : ${snacks}">
                 <a class="buttonLook mediumButton" th:href="@{/snackdetails/${snack.getId()}}" th:text="${snack.getName()}"></a>

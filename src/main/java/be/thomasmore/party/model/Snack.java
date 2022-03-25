@@ -1,7 +1,10 @@
 package be.thomasmore.party.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.Collection;
 
 @Entity
 public class Snack {
@@ -14,6 +17,8 @@ public class Snack {
     //Double met grote letter kan je "null" maken in de database
     //terwijl een double met kleine letter dat niet kan dus je moet hier wel een Double met grote letter gebruiken
     private Double priceSideDish;
+    @ManyToMany
+    private Collection<Venue> venues;
 
     public Integer getId() {
         return id;
