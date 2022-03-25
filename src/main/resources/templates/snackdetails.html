@@ -9,10 +9,39 @@
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
 </head>
 <body>
-
 <div th:replace="fragments/header :: header">Header</div>
+<div class="row1">
+    <div class="row1content" th:if="${snack}">
+        <div class="prevButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{|/snackdetails/${snack.getId()}/prev|}">&lt;</a>
+        </div>
+        <div class="nextButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{|/snackdetails/${snack.getId()}/next|}">&gt;</a>
+        </div>
+
+        <h2 th:text="|snack: ${snack.getName()}|"></h2>
+
+        <div class="venuelist">
+            <div class="infoLine">
+                <div class="infoLineName">Vegan?</div>
+                <div class="infoLineValue" th:text="(${snack.isVegan() ? 'Yes':'No'})"></div>
+            </div>
+            <div class="infoLine">
+                <div class="infoLineName">Price:</div>
+                <div class="infoLineValue" th:text="${snack.getPrice()}"></div>
+            </div>
+            <div class="infoLine" th:if="${snack.isSideDishPossible()}">
+                <div class="infoLineName">Price with side dish:</div>
+                <div class="infoLineValue" th:text="${snack.getPriceSideDish()}"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row1content" th:unless="${snack}">
+        <h1>No snack was chosen</h1>
+    </div>
+</div>
 
 <div th:replace="fragments/footer :: footer">Footer</div>
-
 </body>
 </html>
