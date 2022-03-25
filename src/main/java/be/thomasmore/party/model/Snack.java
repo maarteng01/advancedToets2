@@ -11,5 +11,7 @@ public class Snack {
     private boolean vegan;
     private boolean sideDishPossible;
     private double price;
-    private double priceSideDish;
+    //Double met grote letter kan je "null" maken in de database
+    //terwijl een double met kleine letter dat niet kan dus je moet hier wel een Double met grote letter gebruiken
+    private Double priceSideDish;
 }
